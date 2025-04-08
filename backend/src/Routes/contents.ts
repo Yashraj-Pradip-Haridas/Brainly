@@ -4,7 +4,8 @@ import { contentModel } from "../db";
 const contentRouter = Router();
 
 contentRouter.post("/", userMiddleware, async (req, res) => {
-  const { title, link, type, userId, tags } = req.body;
+  const { title, link, type, tags } = req.body;
+  const userId = req.userId;
   const content = await contentModel.create({
     title,
     link,
