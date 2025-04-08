@@ -20,7 +20,7 @@ userRouter.post("/signup", async (req, res) => {
   try {
     // ✅ Check if user exists
     const existingUser = await findUser(username);
-    if (existingUser !== null) {
+    if (existingUser) {
       res.status(400).json({ message: "User already exists" });
       return;
     }
@@ -66,7 +66,7 @@ userRouter.post("/signin", async (req, res) => {
     }
     // ✅ Generate JWT token
     const token = jwt.sign({ id: existingUser._id }, SecretKey, {
-      expiresIn: "1h"
+      expiresIn: "24h"
     });
     res.json({ token });
     return;
