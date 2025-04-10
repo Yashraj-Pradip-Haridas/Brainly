@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { userMiddleware } from "../middlewares/auth";
 import { contentModel } from "../db";
-import reqBody from "../middlewares/userValidation";
+import reqBody from "../middlewares/contentValidation";
 import asyncWrap from "../wrappers/asyncWrap";
 const contentRouter = Router();
 
@@ -27,9 +27,13 @@ contentRouter.post(
   })
 );
 
-contentRouter.get("/", (req, res) => {
-  res.json({ message: "Get content Route" });
-});
+contentRouter.get(
+  "/",
+  userMiddleware,
+  asyncWrap(async (req, res) => {
+    res.json({ message: "Get content Route" });
+  })
+);
 
 contentRouter.delete("/", (req, res) => {
   res.json({ message: "Delete content Route" });
