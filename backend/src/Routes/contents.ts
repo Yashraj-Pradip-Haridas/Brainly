@@ -31,7 +31,9 @@ contentRouter.get(
   "/",
   userMiddleware,
   asyncWrap(async (req, res) => {
-    res.json({ message: "Get content Route" });
+    const userId = req.userId;
+    const data = contentModel.find({ userId: userId });
+    res.json({ data });
   })
 );
 
