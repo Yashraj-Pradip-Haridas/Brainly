@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { userMiddleware } from "../middlewares/auth";
-import { contentModel } from "../db";
+import { contentModel, userModel } from "../db";
 import reqBody from "../middlewares/contentValidation";
 import asyncWrap from "../wrappers/asyncWrap";
 const contentRouter = Router();
@@ -32,13 +32,23 @@ contentRouter.get(
   userMiddleware,
   asyncWrap(async (req, res) => {
     const userId = req.userId;
-    const data = contentModel.find({ userId: userId });
+    const data = await contentModel.find({ userId: userId });
     res.json({ data });
   })
 );
 
-contentRouter.delete("/", (req, res) => {
-  res.json({ message: "Delete content Route" });
-});
+contentRouter.delete(
+  "/",
+  asyncWrap(async (req, res) => {
+    const userId = req.body.userId;
+    const contentId = req.params.contentId;
+    // const [userUpdate, contentDelete] = await Promise.all([
+    //   userModel.findByIdAndUpdate(userId, { $pull: { _id: contentId } }),
+    //   contentModel.findByIdAndDelete(contentId)
+    // ]);
+    const update = await contentModel.findByIdAndDelete(contentId);
+    res.json({ message: "Deleted", update });
+  })
+);
 
 export default contentRouter;
