@@ -46,7 +46,10 @@ contentRouter.delete(
     //   userModel.findByIdAndUpdate(userId, { $pull: { _id: contentId } }),
     //   contentModel.findByIdAndDelete(contentId)
     // ]);
-    const update = await contentModel.findByIdAndDelete(contentId);
+    const update = await contentModel.findOneAndDelete({
+      id: contentId,
+      userId: userId
+    });
     res.json({ message: "Deleted", update });
   })
 );
