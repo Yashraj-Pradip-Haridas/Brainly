@@ -32,7 +32,10 @@ contentRouter.get(
   userMiddleware,
   asyncWrap(async (req, res) => {
     const userId = req.userId;
-    const data = await contentModel.find({ userId: userId });
+    const data = await contentModel
+      .find({ userId: userId })
+      .populate("userId", "username");
+    // The other arguement gets only the username for the user after using populate instead of all the data
     res.json({ data });
   })
 );
@@ -41,7 +44,9 @@ contentRouter.delete(
   "/",
   asyncWrap(async (req, res) => {
     const userId = req.body.userId;
-    const contentId = req.params.contentId;
+    // const contentId = req.params.contentId;
+    const contentId = req.body.contentId;
+
     // const [userUpdate, contentDelete] = await Promise.all([
     //   userModel.findByIdAndUpdate(userId, { $pull: { _id: contentId } }),
     //   contentModel.findByIdAndDelete(contentId)
