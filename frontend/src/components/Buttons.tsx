@@ -14,13 +14,24 @@ export interface ButtonProps {
 }
 // u can also use maps or records
 const variantStyles: { [key in variants]: string } = {
-  secondary: "bg-purple-400 text-purple-600 rounded-md p-3 m-5",
-  primary: "bg-purple-600 text-white rounded-md p-3 m-5"
+  secondary: "bg-purple-400 text-purple-600 rounded-md",
+  primary: "bg-purple-600 text-white rounded-md"
+};
+
+const sizeStyles = {
+  sm: "px-2 py-1 text-sm m-2",
+  md: "px-4 py-2 text-md m-2",
+  lg: "px-4 py-2 text-md m-2"
 };
 export const Button = (props: ButtonProps) => {
   return (
-    <button className={variantStyles[props.variant]}>
+    <button
+      className={`${variantStyles[props.variant]} ${
+        sizeStyles[props.size]
+      } flex`}
+    >
       {/* {props.startIcon} */}
+      <span>{props.startIcon}</span>
       <span>{props.text}</span>
     </button>
   );
