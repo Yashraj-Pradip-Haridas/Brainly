@@ -31,7 +31,7 @@ export const Button = (props: ButtonProps) => {
       } flex`}
     >
       {/* {props.startIcon} */}
-      <span>{props.startIcon}</span>
+      <span>{props.startIcon}</span>&nbsp;
       <span>{props.text}</span>
     </button>
   );
