@@ -1,6 +1,7 @@
 import "./App.css";
 import { Button } from "./components/Buttons";
 import Card from "./components/Card";
+// import { CreateContentModal } from "./components/CreateContentModal";
 // import Card from "./components/Card";
 import PlusIcon from "./icons/PlusIcon";
 import ShareIcon from "./icons/ShareIcon";
@@ -9,6 +10,10 @@ function App() {
   const handleValue = () => {};
   return (
     <>
+      {/* <CreateContentModal
+        open={true}
+        onclose={() => {}}
+      /> */}
       <div className="flex  justify-end">
         <Button
           variant="primary"

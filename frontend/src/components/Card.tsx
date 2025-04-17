@@ -17,7 +17,7 @@ export default function Card(props: cardProps) {
   };
 
   return (
-    <div className="rounded-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 shadow-md border-l p-2 bg-white min-h-24 min-w-72">
+    <div className="rounded-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 shadow-md  p-2 bg-white min-h-24 min-w-72">
       {/* Header */}
       <div className={`${defaultStyle} justify-between flex-nowrap`}>
         <div className="flex items-center gap-2 min-w-0 flex-1">
