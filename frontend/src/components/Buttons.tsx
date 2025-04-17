@@ -28,7 +28,7 @@ export const Button = (props: ButtonProps) => {
     <button
       className={`${variantStyles[props.variant]} ${
         sizeStyles[props.size]
-      } flex`}
+      } flex items-center`}
     >
       {/* {props.startIcon} */}
       <span>

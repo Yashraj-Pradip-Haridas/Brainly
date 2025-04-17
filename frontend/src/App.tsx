@@ -1,6 +1,7 @@
 import "./App.css";
 import { Button } from "./components/Buttons";
 import PlusIcon from "./icons/PlusIcon";
+import ShareIcon from "./icons/ShareIcon";
 
 function App() {
   const handleValue = () => {};
@@ -16,8 +17,9 @@ function App() {
       <Button
         variant="secondary"
         size="lg"
-        text="Submit"
+        text="Share"
         onClick={handleValue}
+        startIcon={<ShareIcon size="md" />}
       />
       <Button
         variant="secondary"
