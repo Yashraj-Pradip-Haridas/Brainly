@@ -60,7 +60,7 @@ const contentModel = mongoose.model("Content", contentSchema);
 // ✅ Link Schema
 const linkSchema = new Schema({
   hash: { type: String, required: true },
-  userId: { type: objectId, ref: "User", required: true }
+  userId: { type: objectId, ref: "User", required: true, unique: true }
 });
 
 // ✅ Validate user existence before saving link
