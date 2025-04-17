@@ -23,12 +23,13 @@ const sizeStyles = {
   md: "px-4 py-2 text-md m-2",
   lg: "px-4 py-2 text-md m-2"
 };
+const defaultStyles = "flex items-center font-normal";
 export const Button = (props: ButtonProps) => {
   return (
     <button
       className={`${variantStyles[props.variant]} ${
         sizeStyles[props.size]
-      } flex items-center`}
+      } ${defaultStyles} `}
     >
       {/* {props.startIcon} */}
       <span>
