@@ -31,8 +31,16 @@ export const Button = (props: ButtonProps) => {
       } flex`}
     >
       {/* {props.startIcon} */}
-      <span>{props.startIcon}</span>&nbsp;
+      <span>
+        {props.startIcon ? (
+          <div className="pr-2">{props.startIcon}</div>
+        ) : (
+          <div></div>
+        )}
+      </span>
+      &nbsp;
       <span>{props.text}</span>
+      {/* <span>{props.endIcon}</span> */}
     </button>
   );
 };
