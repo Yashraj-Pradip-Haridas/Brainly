@@ -1,32 +1,38 @@
+import { useState } from "react";
 import "./App.css";
 import { Button } from "./components/Buttons";
 import Card from "./components/Card";
-// import { CreateContentModal } from "./components/CreateContentModal";
+import { CreateContentModal } from "./components/CreateContentModal";
 // import Card from "./components/Card";
 import PlusIcon from "./icons/PlusIcon";
 import ShareIcon from "./icons/ShareIcon";
 
 function App() {
-  const handleValue = () => {};
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleClick = () => {
+    setModalOpen(true);
+  };
   return (
     <>
-      {/* <CreateContentModal
-        open={true}
-        onclose={() => {}}
-      /> */}
+      <CreateContentModal
+        open={modalOpen}
+        onclose={() => {
+          setModalOpen(false);
+        }}
+      />
       <div className="flex  justify-end">
         <Button
           variant="primary"
           size="lg"
           text="Add content"
-          onClick={handleValue}
+          onClick={handleClick}
           startIcon={<PlusIcon size="md" />}
         />
         <Button
           variant="secondary"
           size="lg"
           text="Share brain"
-          onClick={handleValue}
+          onClick={() => {}}
           startIcon={<ShareIcon size="md" />}
         />
       </div>

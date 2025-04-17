@@ -27,6 +27,7 @@ const defaultStyles = "flex items-center font-normal";
 export const Button = (props: ButtonProps) => {
   return (
     <button
+      onClick={props.onClick}
       className={`${variantStyles[props.variant]} ${
         sizeStyles[props.size]
       } ${defaultStyles} `}
