@@ -17,7 +17,7 @@ export default function Card(props: cardProps) {
   };
 
   return (
-    <div className="rounded-sm w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/5 shadow-md border-l p-2 bg-white">
+    <div className="rounded-sm w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 shadow-md border-l p-2 bg-white min-h-24 min-w-72">
       {/* Header */}
       <div className={`${defaultStyle} justify-between flex-nowrap`}>
         <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -38,20 +38,23 @@ export default function Card(props: cardProps) {
       <div className="w-full">
         {/* YouTube Embed */}
         {props.type === "youtube" && (
-          <iframe
-            className="w-full aspect-video p-3"
-            src={getYouTubeEmbedLink(props.link)}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          <div className="p-3">
+            <iframe
+              className="w-full aspect-video p-3"
+              height={315}
+              src={getYouTubeEmbedLink(props.link)}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
         )}
 
         {/* Twitter Embed */}
         {props.type === "twitter" && (
-          <div className="p-3">
+          <div className="p-3 overflow-hidden">
             <blockquote className="twitter-tweet">
               <a
                 href={`${props.link.replace(
@@ -67,6 +70,10 @@ export default function Card(props: cardProps) {
             ></script>
           </div>
         )}
+
+        {props.content ? (
+          <p className="text-sm sm:text-base">{props.content}</p>
+        ) : null}
       </div>
     </div>
   );
