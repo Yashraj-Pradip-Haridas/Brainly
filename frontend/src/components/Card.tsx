@@ -1,8 +1,10 @@
+// import { useEffect } from "react";
 import { BinIcon } from "../icons/BinIcon";
 import ShareIcon from "../icons/ShareIcon";
 import { TwitterIcon } from "../icons/TwitterIcon";
 import YoutubeIcon from "../icons/YoutubeIcon";
 import { cardProps } from "./Interfaces";
+import TweetEmbed from "./TwitterEmbed";
 
 const defaultStyle = "flex items-center p-1 m-1";
 
@@ -56,23 +58,7 @@ export default function Card(props: cardProps) {
         )}
 
         {/* Twitter Embed */}
-        {props.type === "twitter" && (
-          <div className="p-3 overflow-hidden">
-            <blockquote className="twitter-tweet">
-              <a
-                href={`${props.link.replace(
-                  "x.com",
-                  "twitter.com"
-                )}?ref_src=twsrc%5Etfw`}
-              ></a>
-            </blockquote>
-            <script
-              async
-              src="https://platform.twitter.com/widgets.js"
-              charSet="utf-8"
-            ></script>
-          </div>
-        )}
+        {props.type === "twitter" && <TweetEmbed link={props.link} />}
 
         {props.content ? (
           <p className="text-sm sm:text-base">{props.content}</p>

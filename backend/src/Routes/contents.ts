@@ -11,17 +11,17 @@ contentRouter.post(
   asyncWrap(async (req, res) => {
     const { title, link, type, tags } = req.body;
     const userId = req.userId;
-    const parsedData = reqBody.safeParse(req.body);
-    if (!parsedData.success) {
-      res.status(400).json({ message: "Invalid request" });
-      return;
-    }
+    // const parsedData = reqBody.safeParse(req.body);
+    // if (!parsedData.success) {
+    //   res.status(400).json({ message: "Invalid request" });
+    //   return;
+    // }
     const content = await contentModel.create({
       title,
       link,
       type,
-      userId,
-      tags
+      userId
+      // tags
     });
     res.json({ message: "New content created successfully" });
   })

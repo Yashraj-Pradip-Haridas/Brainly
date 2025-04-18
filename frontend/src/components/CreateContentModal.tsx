@@ -25,10 +25,20 @@ export function CreateContentModal({
     const title = titleRef.current?.value;
     const link = linkRef.current?.value;
     try {
-      await axios.post(`${BACKEND_URL}/api/v1/content`, {
-        title,
-        link
-      });
+      await axios.post(
+        `${BACKEND_URL}/api/v1/content`,
+        {
+          title,
+          link,
+          type: "video"
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("Token")
+          }
+        }
+      );
+      onclose();
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         console.error("Signin error:", error.response?.data || error.message);

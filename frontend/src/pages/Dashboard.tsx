@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../App.css";
 import { Button } from "../components/Buttons";
 import Card from "../components/Card";
@@ -6,12 +6,35 @@ import { CreateContentModal } from "../components/CreateContentModal";
 import PlusIcon from "../icons/PlusIcon";
 import ShareIcon from "../icons/ShareIcon";
 import Sidebar from "../components/Sidebar";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
+interface content {
+  title: string;
+  type: string;
+  link: string;
+}
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [data, setData] = useState<content[]>([]);
   const handleClick = () => {
     setModalOpen(true);
   };
+
+  useEffect(() => {
+    async function getData() {
+      const response = await axios.get(`${BACKEND_URL}/api/v1/content`, {
+        headers: {
+          Authorization: localStorage.getItem("Token")
+        }
+      });
+      const data = response.data.data;
+      setData(data);
+      console.log(data);
+      console.log(data[0].link);
+    }
+    getData();
+  }, []);
 
   return (
     <>
@@ -42,6 +65,18 @@ export default function Dashboard() {
           </div>
 
           <div className="flex gap-4 flex-wrap">
+            {data &&
+              data.map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    title={item.title}
+                    type="twitter"
+                    link={item.link}
+                  ></Card>
+                );
+              })}
+
             <Card
               title="Bleach:Thousand years of Blood War"
               type="twitter"

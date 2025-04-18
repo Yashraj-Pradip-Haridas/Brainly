@@ -43,7 +43,7 @@ const contentSchema = new Schema({
   link: { type: String, required: true },
   type: { type: String, enum: contentTypes, required: true },
   title: { type: String, required: true },
-  tags: [{ type: objectId, ref: "Tag" }],
+  // tags: [{ type: objectId, ref: "Tag" }],
   userId: { type: objectId, ref: "User", required: true }
 });
 
