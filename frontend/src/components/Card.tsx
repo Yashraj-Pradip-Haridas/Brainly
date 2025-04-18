@@ -1,5 +1,7 @@
 import { BinIcon } from "../icons/BinIcon";
 import ShareIcon from "../icons/ShareIcon";
+import { TwitterIcon } from "../icons/TwitterIcon";
+import YoutubeIcon from "../icons/YoutubeIcon";
 import { cardProps } from "./Interfaces";
 
 const defaultStyle = "flex items-center p-1 m-1";
@@ -22,7 +24,8 @@ export default function Card(props: cardProps) {
       <div className={`${defaultStyle} justify-between flex-nowrap`}>
         <div className="flex items-center gap-2 min-w-0 flex-1">
           <span className="text-gray-500">
-            <ShareIcon size="md" />
+            {props.type === "youtube" && <YoutubeIcon size="lg" />}
+            {props.type === "twitter" && <TwitterIcon size="lg" />}
           </span>
           <span className="text-sm sm:text-base truncate whitespace-nowrap overflow-hidden">
             {props.title}

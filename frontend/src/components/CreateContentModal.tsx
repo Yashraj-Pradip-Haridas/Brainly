@@ -18,8 +18,14 @@ export function CreateContentModal({ open, onclose }) {
               </div>
             </div>
             <div>
-              <Input placeholder={"Title"} />
-              <Input placeholder={"Link"} />
+              <Input
+                placeholder={"Title"}
+                onChange={() => {}}
+              />
+              <Input
+                placeholder={"Link"}
+                onChange={() => {}}
+              />
             </div>
             <div className="flex justify-center ">
               <Button
@@ -36,7 +42,11 @@ export function CreateContentModal({ open, onclose }) {
   );
 }
 
-function Input({ onChange, placeholder }: { onChange: () => void }) {
+interface formInput {
+  placeholder: string;
+  onChange: () => void;
+}
+function Input({ onChange, placeholder }: formInput) {
   return (
     <input
       type="text"
