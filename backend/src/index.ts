@@ -7,7 +7,9 @@ import userRouter from "./Routes/users";
 import { DbConnection } from "./db";
 import errorHandler from "./middlewares/errorHandler";
 import notFoundHandler from "./middlewares/notFoundHandler";
+import cors from "cors";
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;

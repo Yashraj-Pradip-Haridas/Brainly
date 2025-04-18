@@ -7,6 +7,8 @@ export interface ButtonProps {
   size: "sm" | "md" | "lg";
   text: string;
   startIcon?: ReactElement;
+  fullWidth?: boolean;
+  loading?: boolean;
   //   startIcon: ReactElement;
   //   endIcon?: string;
   onClick: () => void;
@@ -30,7 +32,9 @@ export const Button = (props: ButtonProps) => {
       onClick={props.onClick}
       className={`${variantStyles[props.variant]} ${
         sizeStyles[props.size]
-      } ${defaultStyles} `}
+      } ${defaultStyles} ${
+        props.fullWidth ? "w-full justify-center items-center" : ""
+      } ${props.loading ? "disabled cursor-not-allowed opacity-45" : ""}`}
     >
       {/* {props.startIcon} */}
       <span>

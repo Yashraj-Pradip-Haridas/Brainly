@@ -3,7 +3,13 @@
 import CrossIcon from "../icons/CrossIcon";
 import { Button } from "./Buttons";
 
-export function CreateContentModal({ open, onclose }) {
+export function CreateContentModal({
+  open,
+  onclose
+}: {
+  open: boolean;
+  onclose: () => void;
+}) {
   return (
     <div>
       {open && (
@@ -18,10 +24,7 @@ export function CreateContentModal({ open, onclose }) {
               </div>
             </div>
             <div>
-              <Input
-                placeholder={"Title"}
-                onChange={() => {}}
-              />
+              <Input placeholder={"Title"} />
               <Input
                 placeholder={"Link"}
                 onChange={() => {}}
@@ -44,15 +47,17 @@ export function CreateContentModal({ open, onclose }) {
 
 interface formInput {
   placeholder: string;
-  onChange: () => void;
+  onChange?: () => void;
+  ref?: React.Ref<HTMLInputElement>;
+  obfuscate?: boolean;
 }
-function Input({ onChange, placeholder }: formInput) {
+export function Input({ ref, placeholder, obfuscate }: formInput) {
   return (
     <input
-      type="text"
+      type={obfuscate ? "password" : "text"}
       className="p-2 border rounded m-2 block"
-      onChange={onChange}
       placeholder={placeholder}
+      ref={ref}
     />
   );
 }
