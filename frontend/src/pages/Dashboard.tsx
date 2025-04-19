@@ -11,7 +11,7 @@ import { BACKEND_URL } from "../config";
 
 interface content {
   title: string;
-  type: string;
+  type: "twitter" | "youtube";
   link: string;
 }
 export default function Dashboard() {
@@ -20,20 +20,25 @@ export default function Dashboard() {
   const handleClick = () => {
     setModalOpen(true);
   };
+  async function getData() {
+    const response = await axios.get(`${BACKEND_URL}/api/v1/content`, {
+      headers: {
+        Authorization: localStorage.getItem("Token")
+      }
+    });
+
+    const data = response.data.data;
+    setData(data);
+    console.log(data);
+    // console.log(data[0].link);
+  }
 
   useEffect(() => {
-    async function getData() {
-      const response = await axios.get(`${BACKEND_URL}/api/v1/content`, {
-        headers: {
-          Authorization: localStorage.getItem("Token")
-        }
-      });
-      const data = response.data.data;
-      setData(data);
-      console.log(data);
-      console.log(data[0].link);
-    }
     getData();
+    const interval = setInterval(() => getData(), 1000 * 10);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -71,13 +76,13 @@ export default function Dashboard() {
                   <Card
                     key={index}
                     title={item.title}
-                    type="twitter"
+                    type={item.type}
                     link={item.link}
                   ></Card>
                 );
               })}
 
-            <Card
+            {/* <Card
               title="Bleach:Thousand years of Blood War"
               type="twitter"
               link="https://x.com/Tech_Baddo/status/1912438509496840243"
@@ -87,7 +92,7 @@ export default function Dashboard() {
               type="youtube"
               link="https://www.youtube.com/watch?v=3RNZGbqDFyU&ab_channel=LostSenpai"
               content="Lecture for the bleach fans. This is the fight between Aizen and Ichigo"
-            />
+            /> */}
           </div>
         </div>
       </div>

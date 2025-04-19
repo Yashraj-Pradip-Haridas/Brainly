@@ -37,7 +37,7 @@ const tagSchema = new Schema({
 const tagModel = mongoose.model("Tag", tagSchema);
 
 // ✅ Content Schema
-const contentTypes = ["image", "video", "article", "audio"]; // Define outside schema
+const contentTypes = ["youtube", "twitter"]; // Define outside schema
 
 const contentSchema = new Schema({
   link: { type: String, required: true },

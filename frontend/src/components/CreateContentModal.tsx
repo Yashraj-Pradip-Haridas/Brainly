@@ -30,7 +30,7 @@ export function CreateContentModal({
         {
           title,
           link,
-          type: "video"
+          type
         },
         {
           headers: {
