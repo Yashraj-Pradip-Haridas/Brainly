@@ -16,9 +16,38 @@ interface content {
 }
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState<content[]>([]);
+  const [shareLink, setShareLink] = useState(false);
   const handleClick = () => {
     setModalOpen(true);
+  };
+  const share = async () => {
+    setShareLink(!shareLink);
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/api/v1/brain/share`,
+        {
+          share: shareLink
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("Token")
+          }
+        }
+      );
+      console.log(response.data);
+      const shareUrl = `http://localhost:5173${response.data.message}`;
+      alert(shareUrl);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error("Signup error:", error.response?.data || error.message);
+        setErrorMessage(error.response?.data?.message || "Signup failed.");
+      } else {
+        console.error("Unexpected error:", error);
+        setErrorMessage("An unknown error occurred.");
+      }
+    }
   };
   async function getData() {
     const response = await axios.get(`${BACKEND_URL}/api/v1/content`, {
@@ -39,7 +68,7 @@ export default function Dashboard() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [modalOpen]);
 
   return (
     <>
@@ -49,10 +78,12 @@ export default function Dashboard() {
           setModalOpen(false);
         }}
       />
+
       <div className="flex">
         {!modalOpen && <Sidebar />}
         <div className="flex-1 sm:ml-64 p-4 w-full min-h-screen bg-gray-200">
           <div className="flex flex-col sm:flex-row sm:justify-end gap-2 mb-4">
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
             <Button
               variant="primary"
               size="lg"
@@ -64,7 +95,7 @@ export default function Dashboard() {
               variant="secondary"
               size="lg"
               text="Share brain"
-              onClick={() => {}}
+              onClick={share}
               startIcon={<ShareIcon size="md" />}
             />
           </div>

@@ -5,7 +5,7 @@ import { random } from "../utils";
 import asyncWrap from "../wrappers/asyncWrap";
 const shareRouter = Router();
 
-shareRouter.get(
+shareRouter.post(
   "/share",
   userMiddleware,
   asyncWrap(async (req, res) => {
@@ -13,11 +13,12 @@ shareRouter.get(
     const user = await linkModel.findOne({
       userId: req.userId
     });
-    if (user) {
-      res.json({ message: "/share/" + user.hash });
-      return;
-    }
+
     if (share) {
+      if (user) {
+        res.json({ message: "/share/" + user.hash });
+        return;
+      }
       const hash = random(10);
       await linkModel.create({
         userId: req.userId,
@@ -40,7 +41,8 @@ shareRouter.get(
     const hash = req.params.shareLink;
     const link = await linkModel.findOne({ hash });
     if (!link) {
-      return res.status(404).json({ message: "Link not found" });
+      res.status(404).json({ message: "Link not found" });
+      return;
     }
     const content = await contentModel.find({ userId: link.userId });
     const user = await userModel.findOne({ _id: link.userId });
