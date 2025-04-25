@@ -8,7 +8,7 @@
 - **AI-Powered Search**: Utilize advanced search capabilities to find information quickly.
 - **User-Friendly Interface**: Navigate through your knowledge base with an intuitive UI.
 
-## Getting Started
+<!-- ## Getting Started -->
 
 ### Prerequisites
 
