@@ -42,6 +42,7 @@ contentRouter.get(
 
 contentRouter.delete(
   "/",
+  userMiddleware,
   asyncWrap(async (req, res) => {
     const userId = req.body.userId;
     // const contentId = req.params.contentId;
