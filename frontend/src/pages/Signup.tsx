@@ -55,7 +55,7 @@ export function Signup() {
             onClick={signup}
             text="Signup"
             fullWidth={true}
-            loading={false}
+            loading={true}
           ></Button>
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         </div>
