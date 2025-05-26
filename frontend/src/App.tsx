@@ -15,11 +15,11 @@ function App() {
             element={<Signup />}
           />
           <Route
-            path="signin"
+            path="/signin"
             element={<Signin />}
           />
           <Route
-            path="dashboard"
+            path="/dashboard"
             element={<Dashboard />}
           />
           <Route
