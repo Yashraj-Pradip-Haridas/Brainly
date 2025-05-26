@@ -33,7 +33,7 @@ export function Signup() {
   };
 
   return (
-    <div className="h-screen w-screen bg-gray-200  justify-items-center content-center">
+    <div className="h-screen w-screen bg-gray-200 flex justify-center items-center">
       <div className="bg-white rounded-md border-purple-600 min-w-48 p-5 px-8">
         <h1 className="text-center py-3 pb-4 font-bold text-purple-600 text-3xl flex justify-center">
           {" "}
