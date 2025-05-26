@@ -34,7 +34,11 @@ export const Button = (props: ButtonProps) => {
         sizeStyles[props.size]
       } ${defaultStyles} ${
         props.fullWidth ? "w-full justify-center items-center" : ""
-      } ${props.loading ? "disabled cursor-not-allowed opacity-45" : ""}`}
+      } ${
+        props.loading
+          ? "disabled cursor-not-allowed opacity-45"
+          : "cursor-not-allowed"
+      }`}
     >
       {/* {props.startIcon} */}
       <span>
