@@ -30,11 +30,12 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       onClick={props.onClick}
+      disabled={props.loading}
       className={`${variantStyles[props.variant]} ${
         sizeStyles[props.size]
       } ${defaultStyles} ${
         props.fullWidth ? "w-full justify-center items-center" : ""
-      } ${props.loading ? "disabled cursor-not-allowed opacity-45" : ""}`}
+      } ${props.loading ? "cursor-not-allowed opacity-45" : ""}`}
     >
       {/* {props.startIcon} */}
       <span>
