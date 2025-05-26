@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-// import { Button } from "../components/Buttons";
+import { Button } from "../components/Buttons";
 import { Input } from "../components/CreateContentModal";
 import BrainIcon from "../icons/BrainIcon";
 import axios from "axios";
@@ -49,20 +49,15 @@ export function Signup() {
           obfuscate={true}
         />
         <div className="justify-items-center p-2">
-          {/* <Button
+          <Button
             variant="primary"
             size="lg"
             onClick={signup}
             text="Signup"
             fullWidth={true}
             loading={false}
-          ></Button> */}
-          <button
-            type="button"
-            onClick={signup}
-          >
-            Submit
-          </button>
+          ></Button>
+
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         </div>
       </div>
