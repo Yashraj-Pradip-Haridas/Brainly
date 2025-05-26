@@ -22,6 +22,10 @@ function App() {
             path="dashboard"
             element={<Dashboard />}
           />
+          <Route
+            path="*"
+            element={<Signup />}
+          />
         </Routes>
       </BrowserRouter>
     </>
