@@ -57,7 +57,7 @@ export function Signup() {
             fullWidth={true}
             loading={false}
           ></Button> */}
-          <button onClick={signup}></button>
+          <button onClick={signup}>Submit</button>
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         </div>
       </div>
